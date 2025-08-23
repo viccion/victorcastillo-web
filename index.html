@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Víctor Castillo — Autor</title>
+  <style>
+    :root{ --ink:#000; --paper:#fff; --accent:#000; --cyber-cyan:#00f0ff; --cyber-mag:#ff00a8; }
+    *, *::before, *::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{ margin:0; background:var(--paper); color:var(--ink); font-family: ui-serif, Georgia, "Times New Roman", Times, serif; line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+    a{color:inherit; text-decoration:none}
+
+    .frame{ min-height:100dvh; display:flex; flex-direction:column; border:3px solid var(--ink); margin:10px; position:relative; box-shadow: 8px 8px 0 var(--ink); background: var(--paper); overflow:hidden; background-image: radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px); background-size: 6px 6px; }
+    .container{ width:min(1100px,92vw); margin:0 auto; }
+
+    header{ padding: clamp(16px,2vw,28px) 0; border-bottom:3px solid var(--ink); }
+    .head{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand{ font-size: clamp(28px,4vw,44px); font-weight:900; letter-spacing:.5px; line-height:1; }
+    nav{ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    nav a{ padding:6px 10px; border:2px solid var(--ink); box-shadow:3px 3px 0 var(--ink); font-weight:700; background:var(--paper)}
+    nav a:hover{ transform: translate(-1px,-1px) }
+
+    main{ flex:1 1 auto }
+    .section{ padding: clamp(24px,4vw,64px) 0; border-bottom:3px solid var(--ink); position:relative; }
+    .sec-title{ display:grid; place-items:center; text-align:center; margin:0 0 18px 0; }
+    .sec-title h2{ font-size: clamp(22px,3.2vw,34px); margin:0; line-height:1; }
+
+    .lede{ font-size: clamp(16px,2.2vw,20px); max-width:70ch }
+    .ink-card{ border:3px solid var(--ink); box-shadow:6px 6px 0 var(--ink); background: var(--paper); padding: clamp(16px,2.6vw,24px); }
+
+    /* ===== BIO ===== */
+    .bio-grid{ display:grid; gap: clamp(18px,2.8vw,32px); align-items:stretch; }
+    @media (min-width: 880px){ .bio-grid{ grid-template-columns: 1fr 1fr } }
+    .figure{ border:3px solid var(--ink); box-shadow:6px 6px 0 var(--ink); background: var(--paper); display:flex; flex-direction:column; }
+    .figure img{ width:100%; height:100%; max-height:520px; object-fit:cover; display:block; }
+    .figcap{ border-top:3px solid var(--ink); padding:10px 12px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:14px; display:flex; justify-content:space-between; }
+
+    /* ===== Timeline (Roadmap) ===== */
+    .timeline{ position:relative; width:100%; padding:10px 0; }
+    .tl-line{ position:absolute; top:0; bottom:0; left:50%; width:3px; background: var(--ink); transform: translateX(-50%); }
+    .tl-list{ position:relative; display:grid; gap:40px; }
+    .tl-item{ position:relative; display:grid; grid-template-columns: 1fr 1fr; align-items:center; gap:24px; }
+    .tl-item.left  .tl-card{ grid-column:1 }
+    .tl-item.right .tl-card{ grid-column:2 }
+    .tl-card{ border:3px solid var(--ink); box-shadow:6px 6px 0 var(--ink); background:var(--paper); padding:14px; }
+    .tl-title{ margin:0 0 8px 0; font-size: clamp(18px,2.3vw,24px); }
+    .tl-meta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px }
+    .tl-tag{ border:2px solid var(--ink); padding:3px 7px; box-shadow:3px 3px 0 var(--ink); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-weight:700; font-size:12px }
+    .tl-dot{ position:absolute; left:50%; top:12px; transform: translate(-50%, 0); width:16px; height:16px; border:3px solid var(--ink); background:var(--paper); box-shadow:4px 4px 0 var(--ink); border-radius:50%; z-index:2 }
+
+    /* Portada dentro del recuadro (Revelaciones) */
+    .tl-card-grid{ display:grid; grid-template-columns: auto 1fr; gap:14px; align-items:start }
+    .tl-card-cover{ border:3px solid var(--ink); box-shadow:6px 6px 0 var(--ink); background:var(--paper); max-width:220px }
+    .tl-card-cover img{ width:100%; height:auto; display:block }
+
+    @media (max-width: 900px){
+      .tl-line{ left:12px; transform:none }
+      .tl-item{ grid-template-columns: 1fr; }
+      .tl-dot{ left:12px; transform:none }
+      .tl-item.left .tl-card, .tl-item.right .tl-card{ grid-column:1 }
+      .tl-card-grid{ grid-template-columns: 1fr; }
+      .tl-card-cover{ max-width:100% }
+    }
+
+    /* ===== Portal (puertas) ===== */
+    .portal-wrap{ position:relative; width:100%; overflow:hidden; padding:0; }
+    .portal-scene{ position:relative; width:100%; height: clamp(720px, 96vh, 1200px); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); background:#fff; }
+
+    .interior{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter: brightness(100%) contrast(105%); }
+    .door{ position:absolute; top:0; height:100%; width:50%; object-fit:cover; filter: contrast(115%) saturate(110%); box-shadow: inset 0 0 0 3px var(--ink), 6px 0 0 rgba(0,0,0,.6); transition: transform 3.6s cubic-bezier(.2,.7,.07,1); will-change: transform; z-index:2; }
+    .door.left{ left:0; transform: translateX(0); box-shadow: inset 0 0 0 3px var(--ink), -6px 0 0 rgba(0,0,0,.6); }
+    .door.right{ right:0; transform: translateX(0); }
+    @keyframes shake{ 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+    .shaking .door.left{ animation:shake .44s linear }
+    .shaking .door.right{ animation:shake .44s linear }
+    .open .door.left{ transform: translateX(-102%) }
+    .open .door.right{ transform: translateX(102%) }
+
+    .portal-overlay{ position:absolute; inset:0; display:grid; place-items:center; background: transparent; transition: background .3s ease; z-index:3; text-align:center; }
+
+    /* === Botones cyberpunk (OCR neon) === */
+    @font-face{ font-family:'OCRLike'; src: local('OCR A Std'), local('OCR A'), local('OCR A Extended'); font-display: swap; }
+    .cyber-btn{ font-family: 'OCRLike', 'Share Tech Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; letter-spacing:.08em; text-transform:uppercase; position:relative; }
+    .portal-cta{ padding:.7rem 1.1rem; border:3px solid var(--cyber-cyan); background: rgba(0,0,0,.35); color:#eaffff; box-shadow: 0 0 0 3px rgba(0,240,255,.15), 0 0 18px rgba(0,240,255,.35), inset 0 0 12px rgba(0,240,255,.12); clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px); transform: translateY(8px) scale(.98); opacity:0; transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease; }
+    .portal-cta::after{ content:""; position:absolute; inset:0; border:1px dashed rgba(0,240,255,.35); clip-path: inherit; pointer-events:none; mix-blend-mode: screen; }
+    .portal-cta:hover{ box-shadow: 0 0 0 3px rgba(0,240,255,.25), 0 0 26px rgba(0,240,255,.55), inset 0 0 18px rgba(0,240,255,.2); }
+
+    .enter-link{ display:inline-block; margin-top:14px; padding:.75rem 1.15rem; border:0; background: linear-gradient(135deg, rgba(0,240,255,.18), rgba(255,0,168,.18)), linear-gradient(90deg, #0e0e0e, #1a1a1a); color:#fff; text-decoration:none; box-shadow: 0 0 0 3px rgba(255,0,168,.25), 0 0 22px rgba(255,0,168,.45), 0 0 12px rgba(0,240,255,.35) inset; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); font-family: 'OCRLike', 'Share Tech Mono', ui-monospace, monospace; letter-spacing:.09em; text-transform:uppercase; opacity:0; transform: translateY(6px) scale(.98); transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease; pointer-events:none; }
+    .enter-link:hover{ box-shadow: 0 0 0 3px rgba(255,0,168,.35), 0 0 30px rgba(255,0,168,.65), 0 0 18px rgba(0,240,255,.45) inset; }
+
+    .portal-link{ position:absolute; inset:0; z-index:5; cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="6" cy="6" r="5" fill="black"/></svg>') 6 6, pointer; }
+    .portal-link:hover ~ .portal-overlay{ background: rgba(0,0,0,.08) }
+    .portal-link:hover ~ .portal-overlay .portal-cta{ opacity:1; transform: translateY(0) scale(1) }
+
+    /* ===== Blink irregular (limpio, sin duplicados) ===== */
+    .blink{ position:absolute; inset:0; z-index:1; pointer-events:none; background: rgba(0,0,0,0); animation: blinkPulse var(--blinkDur,8s) linear infinite; }
+    @keyframes blinkPulse{ 0%,10%,20%,35%,60%,100%{ background: rgba(0,0,0,0) } 5%{ background: rgba(0,0,0,.22) } 18%{ background: rgba(0,0,0,.18) } 33%{ background: rgba(0,0,0,.28) } 58%{ background: rgba(0,0,0,.20) } }
+    .blink2{ position:absolute; inset:0; z-index:1; pointer-events:none; background: rgba(0,0,0,0); animation: blinkPulse2 var(--blinkDur2,9s) linear infinite; }
+    @keyframes blinkPulse2{ 0%,8%,100%{ background: rgba(0,0,0,0) } 4%{ background: rgba(0,0,0,.18) } 19%{ background: rgba(0,0,0,.32) } 42%{ background: rgba(0,0,0,.20) } 66%{ background: rgba(0,0,0,.26) } }
+
+    /* ===== Contacto: iconos sociales B/N ===== */
+    .socials{ display:flex; gap:12px; margin-top:14px }
+    .socials a{ display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border:2px solid var(--ink); box-shadow:3px 3px 0 var(--ink); background:var(--paper); }
+    .socials svg{ width:20px; height:20px; fill:#000; }
+
+    /* Accesibilidad movimiento reducido */
+    @media (prefers-reduced-motion: reduce){
+      .door{ transition:none }
+      .shaking .door.left, .shaking .door.right{ animation:none }
+      .blink, .blink2{ animation: none }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <header>
+      <div class="container head">
+        <div class="brand">Víctor Castillo</div>
+        <nav>
+          <a href="#sobre-mi">Sobre mí</a>
+          <a href="#libro">Obra</a>
+          <a href="#portal">Portal</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== BIO ===== -->
+      <section class="section" id="sobre-mi">
+        <div class="container">
+          <div class="sec-title"><h2>Autor</h2></div>
+          <div class="bio-grid">
+            <figure class="figure">
+              <img src="foto-autor.jpg" alt="Foto del autor Víctor Castillo">
+              <figcaption class="figcap"><span>Víctor Castillo</span><span>Foto</span></figcaption>
+            </figure>
+            <article class="ink-card">
+              <p class="lede">Víctor Castillo el escritor y creador del universo <em>Eón</em>.</p>
+              <p>Víctor Castillo (Caracas, 1992) es ingeniero químico egresado de la Universidad Central de Venezuela (UCV), apasionado por la física y la exploración de los grandes enigmas del universo. Actualmente reside en Florida, donde combina su vida profesional con la escritura.
+              <br><br>Su experiencia en la industria le dio un contacto íntimo con sistemas cerrados, procesos invisibles y métricas inflexibles; vivencias que nutren la atmósfera asfixiante y precisa de su universo literario.
+              <br><br>En <em>Eón</em> construye una saga que cuestiona la obediencia, la fe y la memoria como engranajes de poder. Su prosa entrelaza lo técnico con lo poético: válvulas y algoritmos conviven con mitos y símbolos ancestrales.
+              <br><br>Con influencias que van de <em>Fahrenheit 451</em> a <em>Silo</em>, pasando por <em>Neuromancer</em> y <em>Dune</em>, Víctor apuesta por una narrativa que es tanto relato como espejo filosófico. En sus textos resuena una convicción: incluso en los mundos más vigilados, recordar —aunque sea en secreto— es un acto de resistencia.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Roadmap / Obra ===== -->
+      <section class="section" id="libro">
+        <div class="container">
+          <div class="sec-title"><h2>Obra — Roadmap</h2></div>
+          <div class="timeline">
+            <div class="tl-line" aria-hidden="true"></div>
+            <div class="tl-list">
+              <!-- Arriba: Revelaciones (portada dentro del recuadro) -->
+              <article class="tl-item left">
+                <span class="tl-dot" aria-hidden="true"></span>
+                <div class="tl-card">
+                  <div class="tl-card-grid">
+                    <figure class="tl-card-cover"><img src="portada-eon.jpg" alt="Portada de Eón: Revelaciones"></figure>
+                    <div>
+                      <h3 class="tl-title">Eón — Revelaciones</h3>
+                      <p>Primer descenso a Eón: presentación del mundo cerrado, el sistema de medición y sus reglas no dichas.</p>
+                      <div class="tl-meta"><span class="tl-tag">Draft sólido</span><span class="tl-tag">Revisión estilo</span></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Medio: Deuteronomio -->
+              <article class="tl-item right">
+                <span class="tl-dot" aria-hidden="true"></span>
+                <div class="tl-card">
+                  <h3 class="tl-title">Eón — Deuteronomio</h3>
+                  <p>Las reglas adquieren voz. La Conciencia exige obediencia; los protagonistas aprenden a negociar con el mandato.</p>
+                  <div class="tl-meta"><span class="tl-tag">Outline final</span><span class="tl-tag">Cap. 1–5 en curso</span></div>
+                </div>
+              </article>
+
+              <!-- Abajo: Apocalipsis -->
+              <article class="tl-item left">
+                <span class="tl-dot" aria-hidden="true"></span>
+                <div class="tl-card">
+                  <h3 class="tl-title">Eón — Apocalipsis</h3>
+                  <p>Cierre del ciclo: la memoria como juicio. Lo que se recuerda y lo que se borra decide quién sobrevive a la última puerta.</p>
+                  <div class="tl-meta"><span class="tl-tag">Concept</span><span class="tl-tag">Notas</span></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Portal (Puertas) ===== -->
+      <section class="section portal-wrap" id="portal">
+        <div class="portal-scene" id="portalScene">
+          <img class="interior" src="interior-eon.jpg" alt="Interior oscuro de Eón">
+          <div class="blink" aria-hidden="true"></div>
+          <div class="blink2" aria-hidden="true"></div>
+          <img class="door left"  src="puerta-eon-izq.png" alt="Puerta izquierda">
+          <img class="door right" src="puerta-eon-der.png" alt="Puerta derecha">
+          <a class="portal-link" href="#" aria-label="Abrir"></a>
+          <div class="portal-overlay">
+            <div class="portal-cta cyber-btn" id="portalCta">Abrir</div>
+            <a class="enter-link" id="enterLink" href="/eon/">Entrar a Eón</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Contacto ===== -->
+      <section class="section" id="contacto">
+        <div class="container">
+          <div class="sec-title"><h2>Contacto</h2></div>
+          <article class="ink-card" style="max-width:840px; margin:auto">
+            <form class="contact" method="post" action="#">
+              <div class="grid" style="display:grid; gap:12px; grid-template-columns: 1fr;">
+                <div style="display:grid; gap:8px; grid-template-columns: 1fr 1fr;">
+                  <label style="display:flex; flex-direction:column; gap:6px;"><span>Nombre</span><input name="nombre" type="text" required style="border:2px solid var(--ink); padding:10px; box-shadow:4px 4px 0 var(--ink); background:var(--paper)"/></label>
+                  <label style="display:flex; flex-direction:column; gap:6px;"><span>Email</span><input name="email" type="email" required style="border:2px solid var(--ink); padding:10px; box-shadow:4px 4px 0 var(--ink); background:var(--paper)"/></label>
+                </div>
+                <label style="display:flex; flex-direction:column; gap:6px;"><span>Mensaje</span><textarea name="mensaje" rows="6" required style="border:2px solid var(--ink); padding:10px; box-shadow:4px 4px 0 var(--ink); background:var(--paper)"></textarea></label>
+                <div class="btns">
+                  <button class="btn" type="submit">Enviar</button>
+                  <a class="btn" href="mailto:hola@tucorreo.com">O escríbeme directo</a>
+                </div>
+                <div class="socials" aria-label="Redes sociales">
+                  <a href="https://www.youtube.com/@tuusuario" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2s-.2-1.7-.9-2.5c-.9-.9-1.9-.9-2.4-1C16.8 2.4 12 2.4 12 2.4h0s-4.8 0-8.2.3c-.5 0-1.5.1-2.4 1-.7.8-.9 2.5-.9 2.5S0 8.1 0 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.7.9 2.5c.9.9 2.1.9 2.6 1 1.9.2 8 .3 8 .3s4.8 0 8.2-.3c.5 0 1.5-.1 2.4-1 .7-.8.9-2.5.9-2.5s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.6 14.7V7.3l6.4 3.7-6.4 3.7z"/></svg></a>
+                  <a href="https://x.com/tuusuario" target="_blank" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.2 2H21l-6.6 7.6L22 22h-6.9l-5.4-7-6.2 7H3.1l7-7.9L2 2h7l5 6.5z"/></svg></a>
+                  <a href="https://www.instagram.com/tuusuario" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1 .5 1.4 1 .4.4.8.9 1 1.4.2.5.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.5 1-1 1.4-.4.4-.9.8-1.4 1-.5.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1-.5-1.4-1-.4-.4-.8-.9-1-1.4-.2-.5-.3-1.2-.4-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.5-1 1-1.4.4-.4.9-.8 1.4-1 .5-.2 1.2-.3 2.4-.4C8.4 2.2 8.8 2.2 12 2.2"/></svg></a>
+                </div>
+              </div>
+            </form>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:10px; padding:18px 0;">
+        <small>Hecho con papel, tinta y un portal.</small>
+        <small class="sig">© <span id="year"></span> Víctor Castillo</small>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Año en footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Interacciones del portal (puertas) con rAF + transitionend
+    (function(){
+      const scene = document.getElementById('portalScene');
+      if(!scene) return;
+
+      const link     = scene.querySelector('.portal-link');
+      const cta      = scene.querySelector('#portalCta');
+      const enter    = scene.querySelector('#enterLink');
+      const leftDoor = scene.querySelector('.door.left');
+      const rightDoor= scene.querySelector('.door.right');
+
+      const SHAKE = 440; // ms
+
+      function showEnter() {
+        enter.style.opacity = 1;
+        enter.style.transform = 'translateY(0) scale(1)';
+        enter.style.pointerEvents = 'auto';
+      }
+
+      // Blink random (igual que tenías)
+      const blink  = scene.querySelector('.blink');
+      const blink2 = scene.querySelector('.blink2');
+      function randomizeBlink(el, cssVar, min, max){
+        if(!el) return;
+        const dur = (Math.random()*(max-min)+min).toFixed(2)+'s';
+        el.style.setProperty(cssVar, dur);
+      }
+      randomizeBlink(blink,  '--blinkDur',  6.5, 10.5);
+      randomizeBlink(blink2, '--blinkDur2', 8.3, 12.7);
+      blink  && blink .addEventListener('animationiteration', ()=>randomizeBlink(blink,  '--blinkDur',  6.5, 10.5));
+      blink2 && blink2.addEventListener('animationiteration', ()=>randomizeBlink(blink2, '--blinkDur2', 8.3, 12.7));
+
+      link.addEventListener('click', function(ev){
+        ev.preventDefault();
+        if(scene.classList.contains('open') || scene.classList.contains('shaking')) return;
+
+        cta.style.opacity = 0;          // ocultar "Abrir"
+        scene.classList.add('shaking'); // vibración
+
+        setTimeout(()=>{
+          scene.classList.remove('shaking');
+
+          // Forzar layout y esperar 2 frames antes de aplicar .open
+          requestAnimationFrame(()=>{
+            // lectura para forzar reflow (opcional): leftDoor.offsetWidth;
+            requestAnimationFrame(()=>{
+              // Dispara transición suave (3.6s en CSS)
+              scene.classList.add('open');
+            });
+          });
+
+        }, SHAKE);
+      }, {passive:false});
+
+      // Mostrar "Entrar a Eón" cuando termine la TRANSICIÓN (no por tiempo fijo)
+      function onDoorTransitionEnd(e){
+        if (e.propertyName !== 'transform') return;
+        leftDoor.removeEventListener('transitionend', onDoorTransitionEnd);
+        rightDoor.removeEventListener('transitionend', onDoorTransitionEnd);
+        showEnter();
+      }
+      leftDoor.addEventListener('transitionend', onDoorTransitionEnd);
+      rightDoor.addEventListener('transitionend', onDoorTransitionEnd);
+    })();
+  </script>
+</body>
+</html>
