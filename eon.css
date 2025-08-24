@@ -174,3 +174,17 @@ main{ flex:1 1 auto }
   .shaking .door.left, .shaking .door.right{ animation:none }
   .blink, .blink2{ animation:none }
 }
+/* deja que el botón sea clickeable cuando .open esté activo */
+.open .portal-link { pointer-events: none; }
+
+/* asegúrate de que el overlay con el botón está por encima de las puertas */
+.portal-overlay { z-index: 6; }
+/* Overlay visible pero NO intercepta clics al inicio */
+.portal-overlay { z-index: 6; pointer-events: none; }
+
+/* El área clickeable que abre puertas debe estar por encima de todo al inicio */
+.portal-link { z-index: 7; }
+
+/* Al abrir: desactiva el overlay invisible y activa el overlay con el botón */
+.open .portal-link   { pointer-events: none; }
+.open .portal-overlay{ pointer-events: auto; }

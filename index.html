@@ -128,7 +128,7 @@ Gopegui.”</blockquote>
           <a class="portal-link" href="#" aria-label="Abrir"></a>
           <div class="portal-overlay">
             <div class="portal-cta cyber-btn" id="portalCta">Abrir</div>
-            <a class="enter-link" id="enterLink" href="/eon/">Entrar a Eón</a>
+            <a class="enter-link" id="enterLink" href="http://eon-book.com/">Entrar a Eón</a>
           </div>
         </div>
       </section>
@@ -255,11 +255,15 @@ Gopegui.”</blockquote>
 
       // Mostrar "Entrar a Eón" al terminar TRANSICIÓN
       function onDoorTransitionEnd(e){
-        if (e.propertyName !== 'transform') return;
-        leftDoor.removeEventListener('transitionend', onDoorTransitionEnd);
-        rightDoor.removeEventListener('transitionend', onDoorTransitionEnd);
-        showEnter();
-      }
+  if (e.propertyName !== 'transform') return;
+  leftDoor.removeEventListener('transitionend', onDoorTransitionEnd);
+  rightDoor.removeEventListener('transitionend', onDoorTransitionEnd);
+
+  // 🔧 soltar el overlay que bloquea los clics
+  link.style.pointerEvents = 'none';
+
+  showEnter();
+}
       leftDoor.addEventListener('transitionend', onDoorTransitionEnd);
       rightDoor.addEventListener('transitionend', onDoorTransitionEnd);
     })();
