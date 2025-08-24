@@ -5,18 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Víctor Castillo — Autor</title>
 
-  <link rel="icon" href="./favicon32x32.png" sizes="32x32">
+  <link rel="icon" href="./favicon32x32.png" sizes="32x32" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- Tipografías -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- 
-
-<link rel="stylesheet" href="eon.css">
-
+  <!-- Tu CSS con cache-buster para ver cambios al instante -->
+  <link rel="stylesheet" href="eon.css?v=2">
 </head>
 <body>
-  <!-- Para UI completa en OCR, añade la clase al body: class="ocr-ui" -->
+  <!-- Para UI completa en OCR, añade class="ocr-ui" al body -->
 
   <div class="frame">
     <header>
@@ -33,12 +30,12 @@
 
     <main>
       <!-- ===== BIO ===== -->
-      <section class="section" id="sobre-mi">
+      <section class="section" id="sobre-mi" aria-labelledby="t-sobre-mi">
         <div class="container">
-          <div class="sec-title"><h2>AUTOR</h2></div>
+          <div class="sec-title"><h2 id="t-sobre-mi">AUTOR</h2></div>
           <div class="bio-grid">
             <figure class="figure">
-              <img src="foto-autor.jpg" alt="Foto del autor Víctor Castillo">
+              <img src="foto-autor.jpg" alt="Foto del autor Víctor Castillo" loading="lazy" decoding="async">
               <figcaption class="figcap"><span>Víctor Castillo</span><span>Foto</span></figcaption>
             </figure>
             <article class="ink-card">
@@ -52,46 +49,49 @@
         </div>
       </section>
 
-      <!-- ===== Roadmap / Obra ===== -->
-      <section class="section" id="libro">
+      <!-- ===== OBRA / Timeline ===== -->
+      <section class="section" id="libro" aria-labelledby="t-obra">
         <div class="container">
-          <div class="sec-title"><h2>OBRA</h2></div>
+          <div class="sec-title"><h2 id="t-obra">OBRA</h2></div>
           <div class="timeline">
             <div class="tl-line" aria-hidden="true"></div>
             <div class="tl-list">
-     <!-- Arriba: Revelaciones (portada dentro del recuadro) -->
-            <article class="tl-item left">
-              <span class="tl-dot" aria-hidden="true"></span>
-              <div class="tl-card">
-    <div class="tl-card-grid with-quotes">
-      <figure class="tl-card-cover">
-        <img src="portada-eon.jpg" alt="Portada de Eón: Revelaciones">
-      </figure>
 
-      <div class="tl-copy">
-        <h3 class="tl-title">Eón — Revelaciones</h3>
-        <p>Primer descenso a Eón: presentación del mundo cerrado, el sistema de medición y sus reglas no dichas.</p>
-        <div class="tl-meta">
-          <span class="tl-tag">Draft sólido</span>
-          <span class="tl-tag">Revisión estilo</span>
-        </div>
-      </div>
+              <!-- Revelaciones: tarjeta (portada + texto) + citas a la derecha -->
+              <article class="tl-item left with-side">
+                <span class="tl-dot" aria-hidden="true"></span>
 
-      <!-- Citas del informe editorial (lado derecho en desktop) -->
-      <aside class="tl-praise" aria-label="Comentarios del editor">
-        <h4 class="tl-praise-title">Comentarios del editor</h4>
-        <blockquote class="tl-quote">“Ciencia ficción intimista, claustrofóbica.”</blockquote>
-        <blockquote class="tl-quote">“Ante un escenario creíble y fantástico a un tiempo.”</blockquote>
-        <blockquote class="tl-quote">“Descripciones escuetas pero efectivas e incluso impactantes.”</blockquote>
-        <cite class="tl-cite">Informe editorial</cite>
-      </aside>
-    </div>
-  </div>
-            </article>
+                <div class="tl-card">
+                  <div class="tl-card-grid">
+                    <figure class="tl-card-cover">
+                      <img src="portada-eon.jpg" alt="Portada de Eón: Revelaciones" decoding="async">
+                    </figure>
+                    <div class="tl-copy">
+                      <h3 class="tl-title">Eón — Revelaciones</h3>
+                      <p>Primer descenso a Eón: presentación del mundo cerrado, el sistema de medición y sus reglas no dichas.</p>
+                      <div class="tl-meta">
+                        <span class="tl-tag">Ciencia Ficción</span>
+                        <span class="tl-tag">Distopía filosófica</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-              
+                <!-- Citas fuera, en su propia columna -->
+                <aside class="tl-side" aria-label="Reseñas">
+                  <h4 class="tl-side-title">Reseñas ★★★★</h4>
+                  <div class="q-list">
+                    <blockquote class="q-card">“Ciencia ficción intimista, claustrofóbica.”</blockquote>
+                    <blockquote class="q-card">“Ante un escenario creíble y fantástico a un tiempo.”</blockquote>
+                    <blockquote class="q-card">“Una novela con la herencia de la ciencia ficción especulativa de Aldous Huxley, Ray Bradbury,  
+Stanisław Lem... También podemos hablar de obras recientes como Te siguen, de Belén 
+Gopegui.”</blockquote>
+                  </div>
+                  <cite class="tl-cite">Informe editorial</cite>
+                </aside>
+              </article>
 
-              <!-- Medio: Deuteronomio -->
+              <!-- Deuteronomio -->
               <article class="tl-item right">
                 <span class="tl-dot" aria-hidden="true"></span>
                 <div class="tl-card">
@@ -101,7 +101,7 @@
                 </div>
               </article>
 
-              <!-- Abajo: Apocalipsis -->
+              <!-- Apocalipsis -->
               <article class="tl-item left">
                 <span class="tl-dot" aria-hidden="true"></span>
                 <div class="tl-card">
@@ -110,13 +110,15 @@
                   <div class="tl-meta"><span class="tl-tag">Concept</span><span class="tl-tag">Notas</span></div>
                 </div>
               </article>
+
             </div>
           </div>
         </div>
       </section>
 
       <!-- ===== Portal (Puertas) ===== -->
-      <section class="section portal-wrap" id="portal">
+      <section class="section portal-wrap" id="portal" aria-labelledby="t-portal">
+        <div class="sec-title" style="display:none"><h2 id="t-portal">Portal</h2></div>
         <div class="portal-scene" id="portalScene">
           <img class="interior" src="interior-eon.jpg" alt="Interior oscuro de Eón">
           <div class="blink" aria-hidden="true"></div>
@@ -132,21 +134,35 @@
       </section>
 
       <!-- ===== Contacto ===== -->
-      <section class="section" id="contacto">
+      <section class="section" id="contacto" aria-labelledby="t-contacto">
         <div class="container">
-          <div class="sec-title"><h2>CONTACTO</h2></div>
+          <div class="sec-title"><h2 id="t-contacto">CONTACTO</h2></div>
           <article class="ink-card" style="max-width:840px; margin:auto">
             <form class="contact" method="post" action="#">
               <div class="grid" style="display:grid; gap:12px; grid-template-columns: 1fr;">
                 <div style="display:grid; gap:8px; grid-template-columns: 1fr 1fr;">
-                  <label style="display:flex; flex-direction:column; gap:6px;"><span>Nombre</span><input name="nombre" type="text" required style="border:2px solid var(--ink); padding:10px; box-shadow:3px 3px 0 var(--ink); background:var(--paper)"/></label>
-                  <label style="display:flex; flex-direction:column; gap:6px;"><span>Email</span><input name="email" type="email" required style="border:2px solid var(--ink); padding:10px; box-shadow:3px 3px 0 var(--ink); background:var(--paper)"/></label>
+                  <label style="display:flex; flex-direction:column; gap:6px;">
+                    <span>Nombre</span>
+                    <input name="nombre" type="text" autocomplete="name" required
+                      style="border:2px solid var(--ink); padding:10px; box-shadow:3px 3px 0 var(--ink); background:var(--paper)">
+                  </label>
+                  <label style="display:flex; flex-direction:column; gap:6px;">
+                    <span>Email</span>
+                    <input name="email" type="email" autocomplete="email" required
+                      style="border:2px solid var(--ink); padding:10px; box-shadow:3px 3px 0 var(--ink); background:var(--paper)">
+                  </label>
                 </div>
-                <label style="display:flex; flex-direction:column; gap:6px;"><span>Mensaje</span><textarea name="mensaje" rows="6" required style="border:2px solid var(--ink); padding:10px; box-shadow:3px 3px 0 var(--ink); background:var(--paper)"></textarea></label>
+                <label style="display:flex; flex-direction:column; gap:6px;">
+                  <span>Mensaje</span>
+                  <textarea name="mensaje" rows="6" required
+                    style="border:2px solid var(--ink); padding:10px; box-shadow:3px 3px 0 var(--ink); background:var(--paper)"></textarea>
+                </label>
                 <div class="btns">
                   <button class="btn" type="submit">Enviar</button>
                 </div>
-                <div class="socials" aria-label="Redes sociales" style="font-family: var(--font-mono); text-transform:uppercase; letter-spacing:.06em;">
+
+                <!-- Redes -->
+                <div class="socials" aria-label="Redes sociales">
                   <!-- Email -->
                   <a href="mailto:contact@eon.world" aria-label="Email">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -159,7 +175,7 @@
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2s-.2-1.7-.9-2.5c-.9-.9-1.9-.9-2.4-1C16.8 2.4 12 2.4 12 2.4h0s-4.8 0-8.2.3c-.5 0-1.5.1-2.4 1-.7.8-.9 2.5-.9 2.5S0 8.1 0 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.7.9 2.5c.9.9 2.1.9 2.6 1 1.9.2 8 .3 8 .3s4.8 0 8.2-.3c.5 0 1.5-.1 2.4-1 .7-.8.9-2.5.9-2.5s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.6 14.7V7.3l6.4 3.7-6.4 3.7z"/></svg>
                   </a>
                   <!-- X -->
-                  <a href="https://x.com/viccion" target="_blank" rel="noopener noreferrer" aria-label="X">
+                  <a href="https://x.com/viccion" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.2 2H21l-6.6 7.6L22 22h-6.9l-5.4-7-6.2 7H3.1l7-7.9L2 2h7l5 6.5z"/></svg>
                   </a>
                   <!-- Instagram -->
@@ -228,11 +244,9 @@
         setTimeout(()=>{
           scene.classList.remove('shaking');
 
-          // Forzar layout y esperar 2 frames antes de aplicar .open
           requestAnimationFrame(()=>{
             requestAnimationFrame(()=>{
-              // Dispara transición suave (3.6s en CSS)
-              scene.classList.add('open');
+              scene.classList.add('open'); // abre puertas
             });
           });
 
