@@ -10,8 +10,7 @@
   <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Roboto Mono para UI; si tienes OCR A local, la usaremos como fallback opcional -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+ 
 
 <link rel="stylesheet" href="eon.css">
 
@@ -60,20 +59,37 @@
           <div class="timeline">
             <div class="tl-line" aria-hidden="true"></div>
             <div class="tl-list">
-              <!-- Arriba: Revelaciones (portada dentro del recuadro) -->
-              <article class="tl-item left">
-                <span class="tl-dot" aria-hidden="true"></span>
-                <div class="tl-card">
-                  <div class="tl-card-grid">
-                    <figure class="tl-card-cover"><img src="portada-eon.jpg" alt="Portada de Eón: Revelaciones"></figure>
-                    <div>
-                      <h3 class="tl-title">Eón — Revelaciones</h3>
-                      <p>Primer descenso a Eón: presentación del mundo cerrado, el sistema de medición y sus reglas no dichas.</p>
-                      <div class="tl-meta"><span class="tl-tag">Draft sólido</span><span class="tl-tag">Revisión estilo</span></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
+     <!-- Arriba: Revelaciones (portada dentro del recuadro) -->
+            <article class="tl-item left">
+              <span class="tl-dot" aria-hidden="true"></span>
+              <div class="tl-card">
+    <div class="tl-card-grid with-quotes">
+      <figure class="tl-card-cover">
+        <img src="portada-eon.jpg" alt="Portada de Eón: Revelaciones">
+      </figure>
+
+      <div class="tl-copy">
+        <h3 class="tl-title">Eón — Revelaciones</h3>
+        <p>Primer descenso a Eón: presentación del mundo cerrado, el sistema de medición y sus reglas no dichas.</p>
+        <div class="tl-meta">
+          <span class="tl-tag">Draft sólido</span>
+          <span class="tl-tag">Revisión estilo</span>
+        </div>
+      </div>
+
+      <!-- Citas del informe editorial (lado derecho en desktop) -->
+      <aside class="tl-praise" aria-label="Comentarios del editor">
+        <h4 class="tl-praise-title">Comentarios del editor</h4>
+        <blockquote class="tl-quote">“Ciencia ficción intimista, claustrofóbica.”</blockquote>
+        <blockquote class="tl-quote">“Ante un escenario creíble y fantástico a un tiempo.”</blockquote>
+        <blockquote class="tl-quote">“Descripciones escuetas pero efectivas e incluso impactantes.”</blockquote>
+        <cite class="tl-cite">Informe editorial</cite>
+      </aside>
+    </div>
+  </div>
+            </article>
+
+              
 
               <!-- Medio: Deuteronomio -->
               <article class="tl-item right">
